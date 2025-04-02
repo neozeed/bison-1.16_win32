@@ -33,7 +33,9 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #define bcopy(s, d, n) memcpy ((d), (s), (n))
 #else
 #ifdef USG
+#ifndef __WATCOMC__
 #include <memory.h>
+#endif
 #define bcopy(src, dst, num) memcpy((dst), (src), (num))
 #endif
 #endif

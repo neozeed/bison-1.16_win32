@@ -36,7 +36,7 @@ INSTALLDATA = /usr/bin/install -c -m 644
 DEFS = /DUSG
 
 CDEBUG = #/Od /Zi
-CFLAGS = $(CDEBUG) $(DEFS)
+CFLAGS = $(CDEBUG) $(DEFS) -I.
 LDFLAGS = #-g
 
 LIBS = 
@@ -72,6 +72,8 @@ PFILE1 = bison.hairy
 PFILES = /DXPFILE="$(datadir)/$(PFILE)" \
 	 /DXPFILE1="$(datadir)/$(PFILE1)"
 
+ALLOCA = alloca.obj
+
 OBJECTS = LR0.obj allocate.obj closure.obj conflicts.obj derives.obj files.obj	\
 	  getargs.obj gram.obj lalr.obj lex.obj					\
 	  main.obj nullable.obj output.obj print.obj reader.obj reduce.obj symtab.obj	\
@@ -94,7 +96,7 @@ realclean: distclean
 
 
 bison.exe: $(OBJECTS)
-	link -out:$@ $(OBJECTS) $(LIBS)
+	wlink system nt file LR0.obj,allocate.obj,closure.obj,conflicts.obj,derives.obj,files.obj,getargs.obj,gram.obj,lalr.obj,lex.obj,main.obj,nullable.obj,output.obj,print.obj,reader.obj,reduce.obj,symtab.obj,warshall.obj,version.obj,bcopy.obj,getopt.obj,getopt1.obj,mktemp.obj,alloca.obj name bison.exe
 
 
 bison.info: bison.texinfo
